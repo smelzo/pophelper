@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Api · PopHelper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/pophelper.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/css/docs_project.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+      <link href="assets/css/font-awesome-ie7.min.css" rel="stylesheet">
+    <![endif]-->
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">Pop Helper</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+                <li class="">
+                  <a href="index.html">Home</a>
+                </li>
+                <li class="active">
+                  <a href="api.html">Documentation</a>
+                </li>
+                <li class="">
+                  <a href="example.html">Example</a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+ <style type="text/css">
+ .nav.nav-list.bs-docs-sidenav.affix-top li.active a:hover i{
+    background-image : none;
+ }
+ </style>
+ <div class="container">
+    <div class="row">
+        <div class="span3 bs-docs-sidebar">
+            <ul class="nav nav-list bs-docs-sidenav">
+              <li><a href="#options"><i class="icon-chevron-right"></i> Options</a></li>
+              <li><a href="#methods"><i class="icon-chevron-right"></i> Methods</a></li>
+              <li><a href="#events"><i class="icon-chevron-right"></i> Events</a></li>
+            </ul>
+        </div>
+        <div class="span9">
+            <section id="options">
+                <h2>Options</h2>
+                <p>
+                    Most options can been setted via <code>data-</code> attribute 
+                </p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Option Name</th>
+                            <th>Data attribute</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>description</th>
+                        </tr>
+                    </thead>
+                    <!--tbody>tr>td*4-->
+                    <tbody>
+                        <tr class="common">
+                            <td><code>activeClass</code></td>
+                            <td><code>data-active-class</code></td>
+                            <td><i>String</i></td>
+                            <td>'active'</td>
+                            <td>Css class for element when Popover is showed</td>
+                        </tr>
+                        <tr class="common">
+                            <td><code>tip</code></td>
+                            <td><code>data-tip</code></td>
+                            <td><i>String</i></td>
+                            <td>''</td>
+                            <td>if setted the text is used to show a tooltip on element over</td>
+                        </tr>
+                        <tr class="common">
+                            <td><code>contentTarget</code></td>
+                            <td><code>data-content-target</code></td>
+                            <td><i>String</i></td>
+                            <td>''</td>
+                            <td>selector or element used as popover's content <code>data-content-target="#my-help-content"</code></td>
+                        </tr>
+                        <tr class="common">
+                            <td><code>href</code></td>
+                            <td><code>data-href</code></td>
+                            <td><i>String</i></td>
+                            <td>''</td>
+                            <td>external document URL (but inside same domain) used as popover's content <code>data-href="http://www.mysyte/help/doc1.html"</code></td>
+                        </tr>
+                        <tr class="common">
+                            <td><code>popTarget</code></td>
+                            <td><code>data-pop-target</code></td>
+                            <td><i>String</i></td>
+                            <td>element</td>
+                            <td>selector or element in relation to which popover is open ie. <code>data-pop-target="#an-element"</code></td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>html</code></td>
+                            <td><code>-</code></td>
+                            <td><i>Boolean</i></td>
+                            <td>true</td>
+                            <td>Insert html into the popover. If false, jquery's <code>text</code> method will be used to insert content into the dom.</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>placement</code></td>
+                            <td><code>data-placement</code></td>
+                            <td><i>String</i></td>
+                            <td>'bottom'</td>
+                            <td>side of popover in relation to element top|left|bottom|right</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>width</code></td>
+                            <td><code>data-width</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>width</b> of popover</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>maxWidth</code></td>
+                            <td><code>data-max-width</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>max width</b> of popover</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>minWidth</code></td>
+                            <td><code>data-max-width</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>max width</b> of popover</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>height</code></td>
+                            <td><code>data-height</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>height</b> of popover</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>maxHeight</code></td>
+                            <td><code>data-max-height</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>max height</b> of popover</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>minHeight</code></td>
+                            <td><code>data-max-height</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>max height</b> of popover</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section id="methods">
+                
+            </section>
+            <section id="events">
+                
+            </section>
+        </div>
+    </div>
+ </div>
+
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Developed by <a href="https://twitter.com/francescosmelzo" target="_blank">@francescosmelzo</a> upon <a href="http://twitter.github.io/bootstrap">Bootsrap</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/smelzo/pophelper/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/blob/master/CHANGELOG.md">Changelog</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/bootstrap-affix.js"></script>
+
+    <script src="assets/js/holder/holder.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+
+    <script src="assets/js/bs_application.js"></script>
+    <script src="src/jquery.pophelper.js"></script>
+
+
+
+  </body>
+</html>

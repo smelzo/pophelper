@@ -1,0 +1,40 @@
+[class^="icon-"] {
+  outline: none;
+  text-decoration: none;
+}
+.icon-primary {
+  color: #0088cc;
+}
+.icon-primary:hover {
+  color: #0044cc;
+}
+.icon-warning {
+  color: #fbb450;
+}
+.icon-warning:hover {
+  color: #f89406;
+}
+.icon-danger {
+  color: #ee5f5b;
+}
+.icon-danger:hover {
+  color: #bd362f;
+}
+.icon-success {
+  color: #62c462;
+}
+.icon-success:hover {
+  color: #51a351;
+}
+.icon-info {
+  color: #5bc0de;
+}
+.icon-info:hover {
+  color: #2f96b4;
+}
+.icon-inverse {
+  color: #444444;
+}
+.icon-inverse:hover {
+  color: #222222;
+}
