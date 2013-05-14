@@ -14,7 +14,189 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * mutate plugin : http://www.jqui.net/jquery-projects/jquery-mutate-official/
  * =========================================================== */
+
+//{{{ mutate http://www.jqui.net/jquery-projects/jquery-mutate-official/ 
+!(function($) {
+mutate_event_stack = [
+			{
+				name: 'width',
+				handler: function (elem){
+					n = {el:elem}
+					if(!$(n.el).data('mutate-width'))$(n.el).data('mutate-width', $(n.el).width());
+					if ($(n.el).data('mutate-width')&&$(n.el).width() != $(n.el).data('mutate-width')  ) {
+						$(n.el).data('mutate-width', $(n.el).width());
+						return true;
+					}
+					return false;
+				}
+			},
+			{
+				name:'height',
+				handler: function (n){
+					element = n;
+					if(!$(element).data('mutate-height'))$(element).data('mutate-height', $(element).height());
+					if ($(element).data('mutate-height')&&$(element).height() != $(element).data('mutate-height')  ) {
+						$(element).data('mutate-height', $(element).height());
+						return true;
+					}
+				}
+			},
+			{
+				name		: 'top',
+				handler 	: function (n){
+					if(!$(n).data('mutate-top'))$(n).data('mutate-top', $(n).css('top'));
+					
+					if ($(n).data('mutate-top')&&$(n).css('top') != $(n).data('mutate-top')  ) {
+						$(n).data('mutate-top', $(n).css('top'));
+						return true;
+					}
+				}
+			},
+			{
+				name		: 'bottom',
+				handler 	: function (n){
+					if(!$(n).data('mutate-bottom'))$(n).data('mutate-bottom', $(n).css('bottom'));
+					
+					if ($(n).data('mutate-bottom')&&$(n).css('bottom') != $(n).data('mutate-bottom')  ) {
+						$(n).data('mutate-bottom', $(n).css('bottom'));
+						return true;
+					}
+				}
+			},
+			{
+				name		: 'right',
+				handler 	: function (n){
+					if(!$(n).data('mutate-right'))$(n).data('mutate-right', $(n).css('right'));
+					
+					if ($(n).data('mutate-right')&&$(n).css('right') != $(n).data('mutate-right')  ) {
+						$(n).data('mutate-right', $(n).css('right'));
+						return true;
+					}
+				}
+			},
+			{
+				name		: 'left',
+				handler 	: function (n){
+					if(!$(n).data('mutate-left'))$(n).data('mutate-left', $(n).css('left'));
+					
+					if ($(n).data('mutate-left')&&$(n).css('left') != $(n).data('mutate-left')  ) {
+						$(n).data('mutate-left', $(n).css('left'));
+						return true;
+					}
+				}
+			},
+			{
+				name		: 'hide',
+				handler 	: function (n){ if ($(n).is(':hidden'))	return true; }
+			},
+			{
+				name		: 'show',
+				handler 	: function (n){ if ($(n).is(':visible'))	return true; }
+			},
+			{
+				name		: 'scrollHeight',
+				handler 	: function (n){
+					if(!$(n).data('prev-scrollHeight'))$(n).data('prev-scrollHeight', $(n)[0].scrollHeight);
+					
+					if ($(n).data('prev-scrollHeight')&&$(n)[0].scrollHeight != $(n).data('prev-scrollHeight')  ) {
+						$(n).data('prev-scrollHeight', $(n)[0].scrollHeight);
+						return true;
+					}
+				}
+			},
+			{
+				name		: 'scrollWidth',
+				handler 	: function (n){
+					if(!$(n).data('prev-scrollWidth'))$(n).data('prev-scrollWidth', $(n)[0].scrollWidth);
+					
+					if ($(n).data('prev-scrollWidth')&&$(n)[0].scrollWidth != $(n).data('prev-scrollWidth')  ) {
+						$(n).data('prev-scrollWidth', $(n)[0].scrollWidth);
+						return true;
+					}
+				}
+			},
+			{
+				name		: 'scrollTop',
+				handler 	: function (n){
+					if(!$(n).data('prev-scrollTop'))$(n).data('prev-scrollTop', $(n)[0].scrollTop());
+					
+					if ($(n).data('prev-scrollTop')&&$(n)[0].scrollTop() != $(n).data('prev-scrollTop')  ) {
+						$(n).data('prev-scrollTop', $(n)[0].scrollTop());
+						return true;
+					}
+				}
+			},
+			{
+				name		: 'scrollLeft',
+				handler 	: function (n){
+					if(!$(n).data('prev-scrollLeft'))$(n).data('prev-scrollLeft', $(n)[0].scrollLeft());
+					
+					if ($(n).data('prev-scrollLeft')&&$(n)[0].scrollLeft() != $(n).data('prev-scrollLeft')  ) {
+						$(n).data('prev-scrollLeft', $(n)[0].scrollLeft());
+						return true;
+					}
+				}
+			}
+		];
+  mutate = {
+    speed: 1,
+    event_stack: mutate_event_stack,
+    stack: [],
+    events: {},
+    add_event: function(evt) {
+      mutate.events[evt.name] = evt.handler;
+    },
+    add: function(event_name, selector, callback, false_callback) {
+      mutate.stack[mutate.stack.length] = {
+        event_name: event_name,
+        selector: selector,
+        callback: callback,
+        false_callback: false_callback
+      }
+    }
+  };
+
+  function reset() {
+    var parent = mutate;
+    if (parent.event_stack != 'undefined' && parent.event_stack.length) {
+      $.each(parent.event_stack, function(j, k) {
+        mutate.add_event(k);
+      });
+    }
+    parent.event_stack = [];
+    $.each(parent.stack, function(i, n) {
+      $(n.selector).each(function(a, b) {
+        if (parent.events[n.event_name](b) === true) {
+          if (n['callback']) n.callback(b, n);
+        } else {
+          if (n['false_callback']) n.false_callback(b, n)
+        }
+      })
+    })
+    setTimeout(reset, mutate.speed);
+  }
+  reset();
+  $.fn.extend({
+    mutate: function() {
+      var event_name = false,
+          callback = arguments[1],
+          selector = this,
+          false_callback = arguments[2] ? arguments[2] : function() {};
+      if (arguments[0].toLowerCase() == 'extend') {
+        mutate.add_event(callback);
+        return this;
+      }
+      $.each($.trim(arguments[0]).split(' '), function(i, n) {
+        event_name = n;
+        mutate.add(event_name, selector, callback, false_callback);
+      });
+      return this;
+    }
+  });
+})(jQuery);
+//}}} mutate
 
 !function ($) {
  
@@ -26,8 +208,10 @@
     , popTarget : null // element to re-target popover
     , html : true
     , tip : false //use title as Tooltip
+    , container : 'body'
     //content
     , contentTarget : null // take as content an element in page
+    , cloneContentTarget : false
     , href : '' //external document
     , content: ''
     , activeClass : 'active' // CSS class for the toggler when active
@@ -57,8 +241,7 @@
     
   /* NOTE: POPHELPER EXTENDS BOOTSTRAP-TOOLTIP.js
      ========================================== */
-
-  Pophelper.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype, {
+  var PophelperExtension = {
     constructor: Pophelper
     //{{{ getOption 
     , getOption : function (name, defaultValue){
@@ -72,7 +255,11 @@
             //o = this.options ,
             //$tip = this.tip(),
             self = this;
-        $(window).bind('resize  mousedown' , function (){
+        $(window).bind('resize  mousedown' , function (e){
+          // if  element has pophelper-toggle skip hide
+          if (e.type=="mousedown" && e.target && $(e.target).hasClass(self.type + '-toggle')) {
+            return ;
+          }
           if (self.tip().is('.in')) self.hide();
         });
         $(element).bind('click mousedown mouseover focus', function (event){
@@ -85,13 +272,17 @@
           });
         }
     }
+    , eventTrigger : function (name){
+      var e = $.Event(this.type + '.'  + name),
+        el = this.$element;
+        el.trigger(e);
+        return e;
+    }
     , setupElement  : function (){
       //add class to toggler
-      var e = $.Event('elementSetup'),
-          el = this.$element;
-        el.trigger(e)
-        if (e.isDefaultPrevented()) return
-        el.addClass(this.type + '-toggler');
+        this.$element.addClass(this.type + '-toggler');
+        this.eventTrigger('before.setup');
+        
     }
     // wrap show function
     , show : function (){
@@ -121,12 +312,10 @@
         else if(placement=='left'||placement=='right') {
             placement=(placement=='left'?'right':'left');
         }
-        console.log(placement);
         self.$element.tooltip({
           title:tip
           , placement : placement
         });
-        console.log( self.$element.data());
       }
     }
     , init: function (type, element, options) {
@@ -144,6 +333,7 @@
         var parentInit = function (){
             _init.call(self,type, element, options);
             self.setupTooltip();
+            self.eventTrigger('after.setup');
         };
         if(href) {
             //{{{ load from external document
@@ -166,8 +356,7 @@
         }
         else if (contentTarget && $(contentTarget).length) {
             parentInit();
-            options.content = self.options.content  = $(contentTarget);
-            console.log(options.content);
+            options.content = self.options.content  = self.options.cloneContentTarget ? $(contentTarget).clone():$(contentTarget);
             return ;
         }
         parentInit();
@@ -181,11 +370,6 @@
       , height: el.offsetHeight
       }, $(el).offset())
     }
-  //, show: function () {
-  //    var _show = $.fn.tooltip.Constructor.prototype.show;
-  //    _show.call(this);
-  //  }
-
   , setContent: function () {
       var $tip = this.tip()
         , title = this.getTitle()
@@ -200,7 +384,6 @@
       
       var tipContent =  $tip.find('.' + this.type + '-content');
       if (content instanceof jQuery){
-        console.log('jQuery');
           tipContent.append(content.removeClass('hide').show());
       }
       else {
@@ -223,29 +406,71 @@
 
       return content;
   }
-  , buildTip : function (){
-    var self=this;
-    this.$tip = $(this.options.template.call(this))
-    .addClass(this.type);
-    $tip = this.$tip;
-    var dimensions = ['width','height','minWidth','maxWidth','minHeight','maxHeight'];
-    $.each(dimensions,function (i, propertyName){
-      var property = self.getOption(propertyName,null);
-      if (property && property!='auto'){
-        $tip.css(propertyName, parseInt(property) + 'px');
-      }
-    });
-    var title = this.getTitle();
-    var titleEl = $tip.find('.'+ this.type + '-title');
-    if (title){
-        if (!titleEl.length){
+  , refreshPosition: function () {
+      var $tip
+        , $arrow
+        , pos
+        , actualWidth
+        , actualHeight
+        , placement
+        , tp;
+        $tip = this.tip();
+        if (!$tip.hasClass('in')) return ;
+        $arrow = $tip.find('.arrow');
+        var arrowHeight = $arrow.outerHeight(true)||0;
+        var arrowWidth = $arrow.outerWidth(true)||0;
+        placement = typeof this.options.placement == 'function' ?
+          this.options.placement.call(this, $tip[0], this.$element[0]) :
+          this.options.placement;
+        pos = this.getPosition();
+        actualWidth = $tip[0].offsetWidth;
+        actualHeight = $tip[0].offsetHeight;
+        switch (placement) {
+          case 'bottom':
+            tp = {top: pos.top + pos.height + arrowHeight, left: pos.left + pos.width / 2 - actualWidth / 2};
+            break
+          case 'top':
+            tp = {top: pos.top - actualHeight - arrowHeight, left: pos.left + pos.width / 2 - actualWidth / 2};
+            break
+          case 'left':
+            tp = {top: pos.top + pos.height / 2 - actualHeight / 2 , left: pos.left - actualWidth - arrowWidth};
+            break
+          case 'right':
+            tp = {top: pos.top + pos.height / 2 - actualHeight / 2 , left: pos.left + pos.width + arrowWidth};
+            break
+        }
+        
+        this.applyPlacement(tp, placement);
+    }
+
+  , buildTip: function() {
+      var self = this;
+      this.$tip = $(this.options.template.call(this)).addClass(this.type);
+      $tip = this.$tip;
+      var dimensions = ['width', 'height', 'minWidth', 'maxWidth', 'minHeight', 'maxHeight'];
+      $.each(dimensions, function(i, propertyName) {
+        var property = self.getOption(propertyName, null);
+        if (property && property != 'auto') {
+          $tip.css(propertyName, parseInt(property) + 'px');
+        }
+      });
+      var title = this.getTitle();
+      var titleEl = $tip.find('.' + this.type + '-title');
+      if (title) {
+        if (!titleEl.length) {
           titleEl = $('<div class="' + this.type + '-title"></div>').prependTo($tip);
         }
-    }
-    $('<button type="button" data-dismiss="' + this.type + '" class="close">&times;</button>')
-      .prependTo(this.$tip)
-      .click(function (){
+      }
+      $('<button type="button" class="close">&times;</button>').prependTo(this.$tip).click(function() {
         self.hide();
+      });
+      this.$tip.mutate('height width',function (element,info){
+        self.refreshPosition();
+      });
+      // assign width first time shown
+      this.$element.one('shown',function (){
+        var width = self.$tip.outerWidth();
+        self.$tip.css('width',self.$tip.outerWidth() + 'px');
       });
   }
   , tip: function () {
@@ -254,13 +479,16 @@
       }
       return this.$tip
     }
-
+  , toggle: function (e) {
+      var self = e ? $(e.currentTarget)[this.type](this._options).data(this.type) : this
+      self.tip().hasClass('in') ? self.hide() : self.show()
+    }
   , destroy: function () {
       this.hide().$element.off('.' + this.type).removeData(this.type)
     }
 
-  })
-
+  }
+  Pophelper.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype, PophelperExtension);
 
 // {{{ POPHELPER PLUGIN DEFINITION
   var old = $.fn.pophelper
@@ -269,9 +497,14 @@
     return this.each(function () {
       var $this = $(this)
         , data = $this.data('pophelper')
-        , options = typeof option == 'object' && option
-      if (!data) $this.data('pophelper', (data = new Pophelper(this, options)))
-      if (typeof option == 'string') data[option]()
+        , options = typeof option == 'object' && option;
+      if (!data) $this.data('pophelper', (data = new Pophelper(this, options)));
+      if (typeof option == 'string') {
+        // call function
+        if ($.isFunction(data[option])){
+          data[option]();
+        }
+      }
     })
   }
 
