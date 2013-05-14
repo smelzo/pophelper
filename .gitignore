@@ -3,6 +3,8 @@
 example-sites/
 less/
 *.less
+*.exe
+*.bat
 assets/img/examples
 build/
 templates/
