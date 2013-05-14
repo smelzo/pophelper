@@ -1,6 +1,6 @@
 ##PopHelper
-PopHelper is a small plugin developer on Bootstrap javascript library.
-It's similar to Bootstrap's PopOver but with some different functions
+PopHelper is a small plugin developed upon Bootstrap javascript library.
+It's similar to Bootstrap's PopOver but with some different features
 - the PopOver content can be loaded from an external document ...
 - or can be used a DOM element in same page
 - the PopOver is closed by click on other part of page (not only on toggler element ad PopOver)

@@ -172,30 +172,30 @@
         , actualWidth
         , actualHeight
         , delta
-        , replace
+        , replace;
 
       $tip
         .offset(offset)
         .addClass(placement)
-        .addClass('in')
+        .addClass('in');
 
-      actualWidth = $tip[0].offsetWidth
-      actualHeight = $tip[0].offsetHeight
+      actualWidth = $tip[0].offsetWidth;
+      actualHeight = $tip[0].offsetHeight;
 
       if (placement == 'top' && actualHeight != height) {
-        offset.top = offset.top + height - actualHeight
-        replace = true
+        offset.top = offset.top + height - actualHeight;
+        replace = true;
       }
 
       if (placement == 'bottom' || placement == 'top') {
-        delta = 0
+        delta = 0;
 
         if (offset.left < 0){
-          delta = offset.left * -2
-          offset.left = 0
-          $tip.offset(offset)
-          actualWidth = $tip[0].offsetWidth
-          actualHeight = $tip[0].offsetHeight
+          delta = offset.left * -2;
+          offset.left = 0;
+          $tip.offset(offset);
+          actualWidth = $tip[0].offsetWidth;
+          actualHeight = $tip[0].offsetHeight;
         }
 
         this.replaceArrow(delta - width + actualWidth, actualWidth, 'left')
