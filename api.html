@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Api · PopHelper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/pophelper.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/css/docs_project.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+      <link href="assets/css/font-awesome-ie7.min.css" rel="stylesheet">
+    <![endif]-->
+    <!-- Le fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">-->
+    <!--  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">-->
+    <!--                <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <!--                               <link rel="shortcut icon" href="assets/ico/favicon.png">-->
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-40928506-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">Pop Helper 0.8</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+                <li class="">
+                  <a href="index.html">
+                    <i class="icon-home"></i>
+                    Home
+                  </a>
+                </li>
+                <li class="active">
+                  <a href="api.html">
+                    <i class="icon-cog"></i>
+                    Documentation
+                  </a>
+                </li>
+                <li class="">
+                  <a href="example.html">
+                    <i class="icon-flag"></i>
+                    Examples
+                  </a>
+                </li>
+              <li>
+                <a class="zip_download_link " href="pophelper.zip">
+                  <i class="icon-cloud-download"></i>
+                  Download
+                </a>
+              </li>
+               <li>
+                <a href="https://github.com/smelzo/pophelper" >
+                  <i class="icon-github"></i>
+                  GitHub project
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h1>PopHelper's documentation</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3 bs-docs-sidebar" style="margin-top:15px">
+            <ul class="nav nav-list bs-docs-sidenav">
+              <li><a href="#usage"><i class="icon-chevron-right"></i> Usage</a></li>
+              <li><a href="#options"><i class="icon-chevron-right"></i> Options</a></li>
+              <li><a href="#methods"><i class="icon-chevron-right"></i> Methods</a></li>
+              <li><a href="#events"><i class="icon-chevron-right"></i> Events</a></li>
+            </ul>
+        </div>
+        <div class="span9">
+            <section id="usage">
+                <h2>Usage</h2>
+                <ol>
+                    <li>
+                        Insert CSS and JS reference in the <code>HEAD</code> of document after jQuery and Bootstrap
+<pre class="prettyprint linenums">
+&lt;head&gt;
+...
+&lt;link href="path_to_css/bootstrap.css" rel="stylesheet"&gt;
+&lt;link href="path_to_css/pophelper.css" rel="stylesheet"&gt;
+
+...
+&lt;script src="path_to_scripts/jquery.js"&gt;&lt;/script&gt;
+&lt;script src="path_to_scripts/bootstrap.js"&gt;&lt;/script&gt;
+&lt;script src="path_to_scripts/jquery.pophelper.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+</pre>
+        <div class="alert alert-info">
+            if you prefer you can put javascript files reference also before tag <code>&lt;/body&gt;</code>
+        </div>
+                    </li>
+                    <li>
+                        Insert the element that will activate pop
+<pre class="prettyprint linenums">
+    &lt;a href="#" data-toggle="pophelper"&gt;Press for help&lt;/a&gt;
+</pre>
+                    </li>
+                    <li>
+                        In javascript code apply plugin
+<pre class="prettyprint linenums">
+    $(function (){
+        $('[data-toggle="pophelper"]').pophelper();
+    })
+</pre>
+                    </li>
+                    <li>
+                        You can set option in element code by <code>data</code> attributes&hellip;
+<pre class="prettyprint linenums">
+    &lt;a href="#" data-toggle="pophelper" data-content-target="#myHelp" data-title="my help" data-placement="top"&gt;Press for help&lt;/a&gt;
+</pre>
+                    &hellip;<b>OR</b> &hellip;
+                    </li>
+                    <li>
+                        &hellip; via javascript configuration object
+<pre class="prettyprint linenums">
+    $(function (){
+        $('[data-toggle="pophelper"]').pophelper({
+            contentTarget: "#myHelp"
+            , title:"my help"
+            , placement:"top"
+        });
+    })
+</pre>
+                    </li>
+                </ol>
+            </section>
+            <section id="options">
+                <h2>Options</h2>
+                <p>
+                    Most options can been setted via <code>data-</code> attribute 
+                </p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Option Name</th>
+                            <th>Data attribute</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>description</th>
+                        </tr>
+                    </thead>
+                    <!--tbody>tr>td*4-->
+                    <tbody>
+                        <tr class="common">
+                            <td><code>activeClass</code></td>
+                            <td><code>data-active-class</code></td>
+                            <td><i>String</i></td>
+                            <td>'active'</td>
+                            <td>Css class for element when Popover is showed</td>
+                        </tr>
+                        <tr class="common">
+                            <td><code>tip</code></td>
+                            <td><code>data-tip</code></td>
+                            <td><i>String</i></td>
+                            <td>''</td>
+                            <td>if setted the text is used to show a tooltip on element over</td>
+                        </tr>
+                        <tr class="common">
+                            <td><code>contentTarget</code></td>
+                            <td><code>data-content-target</code></td>
+                            <td><i>String</i></td>
+                            <td>''</td>
+                            <td>selector or element used as popover's content <code>data-content-target="#my-help-content"</code></td>
+                        </tr>
+                        <tr class="common">
+                            <td><code>cloneContentTarget</code></td>
+                            <td><code>data-clone-content-target</code></td>
+                            <td><i>Boolean</i></td>
+                            <td>false</td>
+                            <td>if setted contentTarget clone element used as popover's content</td>
+                        </tr>
+                        <tr class="common">
+                            <td><code>href</code></td>
+                            <td><code>data-href</code></td>
+                            <td><i>String</i></td>
+                            <td>''</td>
+                            <td>external document URL (but inside same domain) used as popover's content <code>data-href="http://www.mysyte/help/doc1.html"</code></td>
+                        </tr>
+                        <tr class="common">
+                            <td><code>popTarget</code></td>
+                            <td><code>data-pop-target</code></td>
+                            <td><i>String</i></td>
+                            <td>element</td>
+                            <td>selector or element in relation to which popover is open ie. <code>data-pop-target="#an-element"</code></td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>html</code></td>
+                            <td><code>-</code></td>
+                            <td><i>Boolean</i></td>
+                            <td>true</td>
+                            <td>Insert html into the popover. If false, jquery's <code>text</code> method will be used to insert content into the dom.</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>placement</code></td>
+                            <td><code>data-placement</code></td>
+                            <td><i>String</i></td>
+                            <td>'bottom'</td>
+                            <td>side of popover in relation to element top|left|bottom|right</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>width</code></td>
+                            <td><code>data-width</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>width</b> of popover</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>maxWidth</code></td>
+                            <td><code>data-max-width</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>max width</b> of popover</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>minWidth</code></td>
+                            <td><code>data-max-width</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>max width</b> of popover</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>height</code></td>
+                            <td><code>data-height</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>height</b> of popover</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>maxHeight</code></td>
+                            <td><code>data-max-height</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>max height</b> of popover</td>
+                        </tr>
+                        <tr class="all">
+                            <td><code>minHeight</code></td>
+                            <td><code>data-max-height</code></td>
+                            <td><i>Number</i></td>
+                            <td>'auto'</td>
+                            <td><b>max height</b> of popover</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section id="methods">
+    <h2>Methods</h2>
+    <h4>$().pophelper(options)</h4>
+    <p>Initializes pophelpers for an element collection.</p>
+    <h4>.pophelper('show')</h4>
+    <p>Reveals an elements pophelper.</p>
+    <pre class="prettyprint linenums">$('#element').pophelper('show')</pre>
+    <div class="bs-docs-example">
+    <a href="#" id="method-show" data-content="This help is opened programmatically using show method" data-title="help">help</a>
+    <hr>
+    <script type="text/javascript">
+        jQuery(function (){
+            $('#method-show').pophelper({placement:'right',width:300}).delay(2000).pophelper('show');
+        })
+    </script>
+<pre class="prettyprint linenums">
+&lt;a href="#" id="method-show" data-content="[inline content...]" data-title="help"&gt;help&lt;/a&gt;
+&lt;script type="text/javascript"&gt;
+    jQuery(function (){
+        $('#method-show').pophelper({placement:'right',width:300}).delay(2000).pophelper('show');
+    })
+&lt;/script&gt; 
+</pre>
+    </div>
+    <h4>.pophelper('hide')</h4>
+    <p>Hides an elements popover.</p>
+    <pre class="prettyprint linenums">$('#element').pophelper('hide')</pre>
+    <h4>.pophelper('toggle')</h4>
+    <p>Toggles an elements popover.</p>
+    <pre class="prettyprint linenums">$('#element').pophelper('toggle')</pre>
+    <div class="bs-docs-example">
+        <div class="row-fluid">
+            <a href="#" id="method-toggle-popcall" data-content="This help is opened programmatically using show method" data-title="help">help</a>
+            <a href="#" id="method-toggle-toggler" class="btn pull-right pophelper-toggle">click for toggle pop</a>
+        </div>
+    <hr>
+    <script type="text/javascript">
+        jQuery(function (){
+            var el = $('#method-toggle-popcall').pophelper({placement:'left',width:200});
+            $('#method-toggle-toggler').click(function (event){
+                event.preventDefault();
+                el.pophelper('toggle');    
+            });
+        })
+    </script>
+<pre class="prettyprint linenums">
+&lt;a href="#" id="method-toggle-popcall" data-content="This help is opened programmatically using show method" data-title="help"&gt;help&lt;/a&gt;
+&lt;a href="#" id="method-toggle-toggler" class="btn pull-right pophelper-toggle"&gt;click for toggle pop&lt;/a&gt;
+...
+&lt;script type="text/javascript"&gt;
+    jQuery(function (){
+        var el = $('#method-toggle-popcall').pophelper({placement:'left',width:200});
+        $('#method-toggle-toggler').click(function (event){
+            event.preventDefault();
+            el.pophelper('toggle');    
+        });
+    })
+&lt;/script&gt;
+</pre>
+    </div>
+    <div class="alert alert-info">
+      <strong>Heads up!</strong>
+      The element that call <code>.pophelper('toggle')</code> must have <code>pophelper-toggle</code> class for work properly.<br>
+<pre class="prettyprint linenums">
+&lt;a href="#" class="pophelper-toggle"&gt;Toggle&lt;/a&gt;
+</pre>
+    </div>
+    <h4>.pophelper('destroy')</h4>
+    <p>Hides and destroys an element's pophelper.</p>
+    <pre class="prettyprint linenums">$('#element').pophelper('destroy')</pre>
+            </section>
+            <section id="events">
+                <h2>Events</h2>
+                <h4>Shared with Bootstrap's Tooltip</h4>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                     <tr>
+                       <th style="width: 150px;">Event</th>
+                       <th>Description</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                       <td>show</td>
+                       <td>This event fires immediately when the <code>show</code> instance method is called.</td>
+                     </tr>
+                     <tr>
+                       <td>shown</td>
+                       <td>This event is fired when the modal has been made visible to the user (will wait for css transitions to complete).</td>
+                     </tr>
+                     <tr>
+                       <td>hide</td>
+                       <td>This event is fired immediately when the <code>hide</code> instance method has been called.</td>
+                     </tr>
+                     <tr>
+                       <td>hidden</td>
+                       <td>This event is fired when the modal has finished being hidden from the user (will wait for css transitions to complete).</td>
+                     </tr>
+                    </tbody>
+                </table>
+                <h4>PopHelper's events</h4>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                     <tr>
+                       <th style="width: 150px;">Event</th>
+                       <th>Description</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                       <td>pophelper.before.setup</td>
+                       <td>This event fires before the instance setup.</td>
+                     </tr>
+                     <tr>
+                       <td>pophelper.after.setup</td>
+                       <td>This event fires after the instance setup.</td>
+                     </tr>
+                    </tbody>
+                </table>
+    <div class="bs-docs-example">
+        <div class="row-fluid">
+            <div class="span3">
+            <a href="#" id="events-test" data-content="This help is opened programmatically using show method" data-title="help">help</a>
+            </div>
+            <div class="span9">
+            <span class="label label-info">Log:</span><br>
+            <textarea id="log-area" style="width:100%;height:80px"></textarea>
+            </div>
+        </div>
+    <hr>
+    <script type="text/javascript">
+        jQuery(function (){
+            var _log = function (txt){
+                var e = $('#log-area');
+                txt = 'EVENT : ' + txt;
+                e.val(txt + '\n' + e.val() );
+            }
+            $('#events-test').on('pophelper.before.setup',function (){
+                _log('before setup');
+            });
+            $('#events-test').on('pophelper.after.setup',function (){
+                _log('after setup');
+            });
+            $('#events-test').on('show',function (){
+                _log('show pop');
+            });
+            $('#events-test').on('shown',function (){
+                _log('shown pop');
+            });
+            $('#events-test').on('hide',function (){
+                _log('hide pop');
+            });
+            $('#events-test').on('hidden',function (){
+                _log('hidden pop');
+            });
+            var el = $('#events-test').pophelper({placement:'left',width:200});
+            
+        })
+    </script>
+<pre class="prettyprint linenums">
+&lt;script type="text/javascript"&gt;
+    jQuery(function (){
+        var _log = function (txt){
+            //...
+        }
+        $('#events-test').on('pophelper.before.setup',function (){
+            _log('before setup');
+        });
+        $('#events-test').on('pophelper.after.setup',function (){
+            _log('after setup');
+        });
+        $('#events-test').on('show',function (){
+            _log('show pop');
+        });
+        $('#events-test').on('shown',function (){
+            _log('shown pop');
+        });
+        $('#events-test').on('hide',function (){
+            _log('hide pop');
+        });
+        $('#events-test').on('hidden',function (){
+            _log('hidden pop');
+        });
+        var el = $('#events-test').pophelper({placement:'left',width:200});
+        
+    })
+&lt;/script&gt;
+</pre>
+    </div>
+    <div class="alert alert-warning">
+      <strong>Warning!</strong>
+      <code>pophelper.before.setup</code> and 
+      <code>pophelper.after.setup</code> must be binded before to apply plugin to element.
+
+    </div>
+            </section>
+        </div>
+    </div>
+ </div>
+
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Developed by <a href="https://twitter.com/francescosmelzo" target="_blank">@francescosmelzo</a> upon <a href="http://twitter.github.io/bootstrap">Bootsrap</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/smelzo/pophelper/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/blob/master/CHANGELOG.md">Changelog</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/bootstrap-affix.js"></script>
+
+    <script src="assets/js/holder/holder.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+
+    <script src="assets/js/bs_application.js"></script>
+    <script src="src/jquery.pophelper.js"></script>
+
+  </body>
+</html>

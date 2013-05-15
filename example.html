@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Example · PopHelper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/pophelper.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/css/docs_project.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+      <link href="assets/css/font-awesome-ie7.min.css" rel="stylesheet">
+    <![endif]-->
+    <!-- Le fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">-->
+    <!--  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">-->
+    <!--                <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <!--                               <link rel="shortcut icon" href="assets/ico/favicon.png">-->
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-40928506-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">Pop Helper 0.8</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+                <li class="">
+                  <a href="index.html">
+                    <i class="icon-home"></i>
+                    Home
+                  </a>
+                </li>
+                <li class="">
+                  <a href="api.html">
+                    <i class="icon-cog"></i>
+                    Documentation
+                  </a>
+                </li>
+                <li class="active">
+                  <a href="example.html">
+                    <i class="icon-flag"></i>
+                    Examples
+                  </a>
+                </li>
+              <li>
+                <a class="zip_download_link " href="pophelper.zip">
+                  <i class="icon-cloud-download"></i>
+                  Download
+                </a>
+              </li>
+               <li>
+                <a href="https://github.com/smelzo/pophelper" >
+                  <i class="icon-github"></i>
+                  GitHub project
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Subhead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>Examples</h1>
+    <p class="lead">Learn PopHelper by example.</p>
+  </div>
+</header>
+
+<div id="inline-help" class="hide">
+  <h4>Help</h4>
+  <p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed massa quis arcu bibendum pretium. Praesent molestie neque at nibh venenatis non pharetra urna faucibus.
+  </p>
+</div>
+
+  <div class="container">
+
+    <!-- Docs nav
+    ================================================== -->
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav">
+          <li><a href="#minimal"><i class="icon-chevron-right"></i> Basic usage</a></li>
+          <li><a href="#other_element_as_content"><i class="icon-chevron-right"></i> Other element as content</a></li>
+          <li><a href="#programmatically"><i class="icon-chevron-right"></i> Programmatically Pop Helper</a></li>
+          <li><a href="#remote"><i class="icon-chevron-right"></i> Load remote content</a></li>
+          <li><a href="#poptarget"><i class="icon-chevron-right"></i> Targetting popover</a></li>
+          <li><a href="#navbarpop"><i class="icon-chevron-right"></i> Use in Navbar</a></li>
+        </ul>
+      </div>
+      <div class="span9">
+        <!-- Basic usage
+        ================================================== -->
+        <section id="minimal">
+            <div class="page-header">
+                <h1>Basic usage</h1>
+            </div>
+            <p>Very basic usage. Similar to Bootstrap popover</p>
+        <div class="bs-docs-example">
+          <b>Standard Bootstrap's Popovers</b>
+          <ul class="bs-docs-tooltip-examples">
+            <li><a href="#" class="btn" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="Popover on top">Popover on top</a></li>
+            <li><a href="#" class="btn" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="Popover on right">Popover on right</a></li>
+            <li><a href="#" class="btn" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="Popover on bottom">Popover on bottom</a></li>
+            <li><a href="#" class="btn" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="Popover on left">Popover on left</a></li>
+          </ul>
+        <hr>
+          <b>PopHelper's Popovers</b>
+          <ul class="bs-docs-tooltip-examples">
+            <li><a href="#" class="btn" data-toggle="pophelper" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="PopHelper on top">PopHelper on top</a></li>
+            <li><a href="#" class="btn" data-toggle="pophelper" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="PopHelper on right">PopHelper on right</a></li>
+            <li><a href="#" class="btn" data-toggle="pophelper" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="PopHelper on bottom">PopHelper on bottom</a></li>
+            <li><a href="#" class="btn" data-toggle="pophelper" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="PopHelper on left">PopHelper on left</a></li>
+          </ul>
+<pre class="prettyprint linenums">
+&lt;a href="#" class="btn" data-toggle="pophelper" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="PopHelper on top"&gt;PopHelper on top&lt;/a&gt;
+...
+&lt;script type="text/javascript"&gt;
+    $(function (){
+    //activate pophelper
+      $('[data-toggle="pophelper"]').pophelper()
+    })
+&lt;/script&gt;
+</pre>
+        </div>
+      </section>
+      <section id="programmatically">
+      <h1>Programmatically Pop Helper</h1>
+      <p>
+        You can call <code>$(...).pophelper</code> from javascript
+      </p>
+                  <div class="bs-docs-example">
+                      <fieldset>
+                        <button id="by_code" class="btn btn-inverse" type="button">
+                          <i class="icon-question-sign icon-warning"></i>
+                        </button>
+                      </fieldset>
+      <hr>
+                  <script type="text/javascript">
+                      $(function (){
+                        $('#by_code').pophelper({
+                          content : '<h4>I am the content</h4>'
+                          , title : 'Programmatically Pop Helper'
+                          , minWidth : 400
+                          , placement : 'right'
+                        });
+                      });
+                  </script>
+      <pre class="prettyprint linenums">
+      &lt;button id="by_code" class="btn btn-inverse" type="button"&gt;
+        &lt;i class="icon-question-sign"&gt;&lt;/i&gt;
+      &lt;/button&gt;
+      &lt;script type="text/javascript"&gt;
+        $(function (){
+          $('#by_code').pophelper({
+            content : '&lt;h4&gt;I am the content&lt;/h4&gt;'
+            , title : 'Programmatically Pop Helper'
+            , minWidth : 400
+            , placement : 'right'
+          });
+        });
+      &lt;/script&gt; 
+      </pre>
+                </div>
+      </section>        
+
+        <section id="other_element_as_content">
+            <h1>Other element as content</h1>
+            <p>
+              Open Popover help using as content another element
+            </p>
+            <form class="bs-docs-example">
+                <fieldset>
+                  <button class="btn pophelper-test" type="button" data-title="Help" data-min-width="400" data-content-target="#inline-help">?</button>
+                  <span class="help-block">Click button for Help</span>
+                </fieldset>
+           
+<b>Hidden element in page</b><br>
+<pre class="prettyprint linenums">
+&lt;div id="inline-help" class="hide"&gt;
+  &lt;h4&gt;Help&lt;/h4&gt;
+  &lt;p&gt;
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed massa quis arcu bibendum pretium. Praesent molestie neque at nibh venenatis non pharetra urna faucibus.
+  &lt;/p&gt;
+&lt;/div&gt;
+...
+</pre>
+<b>Button</b><br>
+<pre class="prettyprint linenums">
+&lt;button class="btn pophelper-test" type="button" data-title="Help" data-content-target="#inline-help"&gt;?&lt;/button&gt;  
+</pre>
+         </form>
+        </section>
+        <section id="remote">
+          <div class="page-header">
+                <h1>Load remote content</h1>
+                <p>
+                  You can use as content of your Popover an external document (in same domain)
+                  just set the url in <code>data-href</code> of element or in <code>href</code> option
+                </p>
+            </div>
+           <form class="bs-docs-example">
+                <fieldset>
+                  <button id="by_code" data-toggle="pophelper" data-width="640px" title="open help" data-tip="click for help!" data-placement="right" data-href="test/help.html" class="btn btn-info" type="button">
+                    <i class="icon-question-sign icon-white"></i>
+                  </button>
+                </fieldset>
+            </form>
+            
+        </section>
+        <section id="poptarget">
+            <div class="page-header">
+                <h1>Targetting popover</h1>
+                <h3>open near another element than toggler button</h3>
+            </div>
+            <p>
+              You can set option <code>popTarget</code> or data-attribute <code>data-pop-target</code> to link Popover to
+              an another element than help button.
+            </p>
+            <p>
+              In example below you see that Popover is attached to <code>input</code> rather than <code>a</code>
+            </p>
+            <form class="bs-docs-example">
+                <fieldset>
+                <form class="bs-docs-example">
+                  <fieldset>
+                    <legend>Legend</legend>
+                    <label>Label
+                      <a href="#" class="pophelper-test" data-pop-target="#iam_the_target" data-min-width="400" data-href="test/help.html">
+                        <i class="icon-info icon-question-sign"></i>
+                      </a>
+                    </label>
+                    <input id="iam_the_target" type="text" placeholder="Type something…">
+                  </fieldset>
+                </form>
+                
+                </fieldset>
+            </form>
+<pre class="prettyprint linenums">
+&lt;label&gt;Label
+  &lt;a href="#" class="pophelper-test" data-pop-target="<b>#iam_the_target</b>" data-href="test/help.html"&gt;
+    &lt;i class="icon-question-sign"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+&lt;/label&gt;
+&lt;input id="<b>iam_the_target</b>" type="text" placeholder="Type something&hellip;"&gt;
+</pre>
+        </section>
+        <section id="navbarpop">
+            <div class="page-header">
+                <h1>Use in navbar</h1>
+                <p>
+                Useful to show forms or other markup other than list
+                </p>
+            </div>
+          <div class="bs-docs-example">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="container">
+                  <ul class="nav pull-right">
+                      <li><a href="#">Link</a></li>
+                      <li class="divider-vertical"></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="pophelper" data-content-target="#signup-form">Sign-up <b class="caret"></b></a>
+                      </li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </section>
+        <form id="signup-form" class="form-horizontal hide">
+            <div class="control-group">
+              <label class="control-label" for="inputEmail">Email</label>
+              <div class="controls">
+                <input type="text" id="inputEmail" placeholder="Email">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="inputPassword">Password</label>
+              <div class="controls">
+                <input type="password" id="inputPassword" placeholder="Password">
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <label class="checkbox">
+                  <input type="checkbox"> Remember me
+                </label>
+                <button type="submit" class="btn">Sign in</button>
+              </div>
+            </div>
+          </form>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Developed by <a href="https://twitter.com/francescosmelzo" target="_blank">@francescosmelzo</a> upon <a href="http://twitter.github.io/bootstrap">Bootsrap</a>.</p>
+        <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/smelzo/pophelper/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/twitter/bootstrap/blob/master/CHANGELOG.md">Changelog</a></li>
+        </ul>
+      </div>
+    </footer>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/bootstrap-affix.js"></script>
+
+    <script src="assets/js/holder/holder.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+
+    <script src="assets/js/bs_application.js"></script>
+    <script src="src/jquery.pophelper.js"></script>
+
+  </body>
+</html>
